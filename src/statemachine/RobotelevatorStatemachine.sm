@@ -1,5 +1,5 @@
-%class Statemachine
-%header Statemachine.h
+%class RobotelevatorStatemachine
+%header RobotelevatorStatemachine.h
 %start MainMap::Parked
 %map MainMap
 %%

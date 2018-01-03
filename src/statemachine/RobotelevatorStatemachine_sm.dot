@@ -1,0 +1,109 @@
+digraph RobotelevatorStatemachine {
+
+    node
+        [shape=Mrecord width=1.5];
+
+    subgraph cluster_MainMap {
+
+        label="MainMap";
+
+        //
+        // States (Nodes)
+        //
+
+        "MainMap::Parked"
+            [label="{Parked|Default/\l}"];
+
+        "MainMap::MovingDownTo2ndFloor"
+            [label="{MovingDownTo2ndFloor|Default/\l}"];
+
+        "MainMap::WaitingForRobotExit2ndFloorRobotDocked"
+            [label="{WaitingForRobotExit2ndFloorRobotDocked|Default/\l}"];
+
+        "MainMap::WaitingForRobotExit2ndFloorRobotUndocked"
+            [label="{WaitingForRobotExit2ndFloorRobotUndocked|Default/\l}"];
+
+        "MainMap::Cleaning2ndFloor"
+            [label="{Cleaning2ndFloor|Default/\l}"];
+
+        "MainMap::WaitingForRobotEnter2ndFloorRobotDocked"
+            [label="{WaitingForRobotEnter2ndFloorRobotDocked|Default/\l}"];
+
+        "MainMap::MovingDownTo1stFloor"
+            [label="{MovingDownTo1stFloor|Default/\l}"];
+
+        "MainMap::WaitingForRobotExit1stFloorRobotDocked"
+            [label="{WaitingForRobotExit1stFloorRobotDocked|Default/\l}"];
+
+        "MainMap::WaitingForRobotExit1stFloorRobotUndocked"
+            [label="{WaitingForRobotExit1stFloorRobotUndocked|Default/\l}"];
+
+        "MainMap::Cleaning1stFloor"
+            [label="{Cleaning1stFloor|Default/\l}"];
+
+        "MainMap::WaitingForRobotEnter1stFloorRobotDocked"
+            [label="{WaitingForRobotEnter1stFloorRobotDocked|Default/\l}"];
+
+        "MainMap::MovingUpToParkingPosition"
+            [label="{MovingUpToParkingPosition|Default/\l}"];
+
+        "%start"
+            [label="" shape=circle style=filled fillcolor=black width=0.25];
+
+    }
+
+    //
+    // Transitions (Edges)
+    //
+
+    "MainMap::Parked" -> "MainMap::MovingDownTo2ndFloor"
+        [label="startCleanup/\lmoveDown;\l"];
+
+    "MainMap::MovingDownTo2ndFloor" -> "MainMap::WaitingForRobotExit2ndFloorRobotDocked"
+        [label="carrierButtonPressed2ndFloor/\lstop;\l"];
+
+    "MainMap::WaitingForRobotExit2ndFloorRobotDocked" -> "MainMap::WaitingForRobotExit2ndFloorRobotUndocked"
+        [label="robotButtonReleased2ndFloor/\lstartUndockingTimer;\l"];
+
+    "MainMap::WaitingForRobotExit2ndFloorRobotUndocked" -> "MainMap::Cleaning2ndFloor"
+        [label="undockingTimePassed/\l"];
+
+    "MainMap::WaitingForRobotExit2ndFloorRobotUndocked" -> "MainMap::WaitingForRobotExit2ndFloorRobotDocked"
+        [label="robotButtonPressed2ndFloor/\lcancelUndockingTimer;\l"];
+
+    "MainMap::Cleaning2ndFloor" -> "MainMap::WaitingForRobotEnter2ndFloorRobotDocked"
+        [label="robotButtonPressed2ndFloor/\lstartDockingTimer;\l"];
+
+    "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::MovingDownTo1stFloor"
+        [label="dockingTimePassed/\lmoveDown;\l"];
+
+    "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::Cleaning2ndFloor"
+        [label="robotButtonReleased2ndFloor/\lcancelDockingTimer;\l"];
+
+    "MainMap::MovingDownTo1stFloor" -> "MainMap::WaitingForRobotExit1stFloorRobotDocked"
+        [label="carrierButtonPressed1stFloor/\lstop;\l"];
+
+    "MainMap::WaitingForRobotExit1stFloorRobotDocked" -> "MainMap::WaitingForRobotExit1stFloorRobotUndocked"
+        [label="robotButtonReleased2ndFloor/\lstartUndockingTimer;\l"];
+
+    "MainMap::WaitingForRobotExit1stFloorRobotUndocked" -> "MainMap::Cleaning1stFloor"
+        [label="undockingTimePassed/\l"];
+
+    "MainMap::WaitingForRobotExit1stFloorRobotUndocked" -> "MainMap::WaitingForRobotExit1stFloorRobotDocked"
+        [label="robotButtonPressed1stFloor/\lcancelUndockingTimer;\l"];
+
+    "MainMap::Cleaning1stFloor" -> "MainMap::WaitingForRobotEnter1stFloorRobotDocked"
+        [label="robotButtonPressed1stFloor/\lstartDockingTimer;\l"];
+
+    "MainMap::WaitingForRobotEnter1stFloorRobotDocked" -> "MainMap::MovingUpToParkingPosition"
+        [label="dockingTimePassed/\lmoveUp;\l"];
+
+    "MainMap::WaitingForRobotEnter1stFloorRobotDocked" -> "MainMap::Cleaning1stFloor"
+        [label="robotButtonReleased1stFloor/\lcancelDockingTimer;\l"];
+
+    "MainMap::MovingUpToParkingPosition" -> "MainMap::Parked"
+        [label="carrierButtonPressedParkingPosition/\lstop;\l"];
+
+    "%start" -> "MainMap::Parked"
+
+}
