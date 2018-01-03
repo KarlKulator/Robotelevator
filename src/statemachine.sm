@@ -1,0 +1,78 @@
+%class Statemachine
+%header Statemachine.h
+%start MainMap::Parked
+%map MainMap
+%%
+Parked
+{
+    startCleanup MovingDownTo2ndFloor { moveDown(); }
+    Default nil { }
+}
+
+MovingDownTo2ndFloor
+{
+    carrierButtonPressed2ndFloor WaitingForRobotExit2ndFloorRobotDocked { stop(); }
+    Default nil { }
+}
+WaitingForRobotExit2ndFloorRobotDocked
+{
+    robotButtonReleased2ndFloor WaitingForRobotExit2ndFloorRobotUndocked { startUndockingTimer();}
+    Default nil { }
+}
+WaitingForRobotExit2ndFloorRobotUndocked
+{
+    undockingTimePassed Cleaning2ndFloor { }
+    robotButtonPressed2ndFloor WaitingForRobotExit2ndFloorRobotDocked {cancelUndockingTimer();}
+    Default nil { }
+}
+Cleaning2ndFloor
+{
+    robotButtonPressed2ndFloor WaitingForRobotEnter2ndFloorRobotDocked { startDockingTimer();}
+    Default nil { }
+}
+WaitingForRobotEnter2ndFloorRobotDocked
+{
+	dockingTimePassed MovingDownTo1stFloor { moveDown(); }
+    robotButtonReleased2ndFloor Cleaning2ndFloor {cancelDockingTimer();}
+    Default nil { }
+}
+
+MovingDownTo1stFloor
+{
+    carrierButtonPressed1stFloor WaitingForRobotExit1stFloorRobotDocked { stop(); }
+    Default nil { }
+}
+
+WaitingForRobotExit1stFloorRobotDocked
+{
+    robotButtonReleased2ndFloor WaitingForRobotExit1stFloorRobotUndocked { startUndockingTimer();}
+    Default nil { }
+}
+
+WaitingForRobotExit1stFloorRobotUndocked
+{
+    undockingTimePassed Cleaning1stFloor { }
+    robotButtonPressed1stFloor WaitingForRobotExit1stFloorRobotDocked {cancelUndockingTimer();}
+    Default nil { }
+}
+
+Cleaning1stFloor
+{
+    robotButtonPressed1stFloor WaitingForRobotEnter1stFloorRobotDocked { startDockingTimer();}
+    Default nil { }
+}
+
+WaitingForRobotEnter1stFloorRobotDocked
+{
+	dockingTimePassed MovingUpToParkingPosition { moveUp(); }
+    robotButtonReleased1stFloor Cleaning1stFloor {cancelDockingTimer();}
+    Default nil { }
+}
+
+MovingUpToParkingPosition
+{
+    carrierButtonPressedParkingPosition Parked { stop(); }
+    Default nil { }
+}
+
+%%
