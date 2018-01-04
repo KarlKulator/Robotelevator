@@ -35,7 +35,7 @@ void RobotelevatorStatemachine::startUndockingTimer() {
 	std::thread([=]() {
 		std::this_thread::sleep_for(std::chrono::seconds(10));
 		dockingTimePassed(undockingTimerId);
-	});
+	}).detach();
 }
 
 void RobotelevatorStatemachine::cancelUndockingTimer() {
@@ -50,7 +50,7 @@ void RobotelevatorStatemachine::startDockingTimer() {
 	std::thread([=]() {
 		std::this_thread::sleep_for(std::chrono::seconds(10));
 		dockingTimePassed(dockingTimerId);
-	});
+	}).detach();
 }
 
 void RobotelevatorStatemachine::cancelDockingTimer() {
