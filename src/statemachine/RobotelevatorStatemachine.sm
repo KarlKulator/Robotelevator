@@ -45,7 +45,7 @@ MovingDownTo1stFloor
 
 WaitingForRobotExit1stFloorRobotDocked
 {
-    robotButtonReleased2ndFloor WaitingForRobotExit1stFloorRobotUndocked { startUndockingTimer();}
+    robotButtonReleased1stFloor WaitingForRobotExit1stFloorRobotUndocked { startUndockingTimer();}
     Default nil { }
 }
 

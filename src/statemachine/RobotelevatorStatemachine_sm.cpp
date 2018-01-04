@@ -732,7 +732,7 @@ void MainMap_WaitingForRobotExit1stFloorRobotDocked::Default(RobotelevatorStatem
 
 }
 
-void MainMap_WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor(RobotelevatorStatemachineContext& context)
+void MainMap_WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased1stFloor(RobotelevatorStatemachineContext& context)
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
@@ -749,7 +749,7 @@ void MainMap_WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor
     {
         std::ostream& str = context.getDebugStream();
 
-        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor()"
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased1stFloor()"
             << std::endl;
     }
 
@@ -761,7 +761,7 @@ void MainMap_WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor
         {
             std::ostream& str = context.getDebugStream();
 
-            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor()"
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased1stFloor()"
                 << std::endl;
         }
 
