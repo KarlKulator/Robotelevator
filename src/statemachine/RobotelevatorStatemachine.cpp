@@ -36,7 +36,7 @@ void RobotelevatorStatemachine::startUndockingTimer() {
 	auto undockingTimerId = m_currentUndockingTimerId;
 	std::thread([=]() {
 		std::this_thread::sleep_for(std::chrono::seconds(10));
-		dockingTimePassed(undockingTimerId);
+		undockingTimePassed(undockingTimerId);
 	}).detach();
 }
 
