@@ -84,7 +84,7 @@ digraph RobotelevatorStatemachine {
         [label="carrierButtonPressed1stFloor/\lstop;\l"];
 
     "MainMap::WaitingForRobotExit1stFloorRobotDocked" -> "MainMap::WaitingForRobotExit1stFloorRobotUndocked"
-        [label="robotButtonReleased2ndFloor/\lstartUndockingTimer;\l"];
+        [label="robotButtonReleased1stFloor/\lstartUndockingTimer;\l"];
 
     "MainMap::WaitingForRobotExit1stFloorRobotUndocked" -> "MainMap::Cleaning1stFloor"
         [label="undockingTimePassed\l\[ctxt.getCurrentUndockingTimerId() == undockingtimerId\]/\l"];
