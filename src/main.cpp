@@ -9,10 +9,14 @@
 #include "ServoswitchedElevatorMotor.h"
 #include "Buttons.h"
 
+#include <wiringPi.h>
+
 #include <chrono>
 #include <thread>
 
 int main(){
+	wiringPiSetupGpio();
+
 	ServoswitchedElevatorMotor motor;
 	RobotelevatorStatemachine statemachine(&motor);
 	Buttons buttons(&statemachine);
