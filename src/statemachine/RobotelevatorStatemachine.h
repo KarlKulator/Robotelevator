@@ -9,8 +9,8 @@
 #define SRC_STATEMACHINE_ROBOTELEVATORSTATEMACHINE_H_
 
 #include "RobotelevatorStatemachine_sm.h"
-#include "../IElevatorMotor.h"
-#include "../Timer.h"
+#include <actors/IElevatorMotor.h>
+#include <timers/Timer.h>
 #include <mutex>
 
 class RobotelevatorStatemachine {

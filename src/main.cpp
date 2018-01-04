@@ -5,10 +5,10 @@
  *      Author: veit
  */
 
-#include "statemachine/RobotelevatorStatemachine.h"
-#include "ServoswitchedElevatorMotor.h"
-#include "Buttons.h"
-#include "Timer.h"
+#include <statemachine/RobotelevatorStatemachine.h>
+#include <actors/ServoswitchedElevatorMotor.h>
+#include <sensors/Buttons.h>
+#include <timers/Timer.h>
 
 #include <wiringPi.h>
 
