@@ -76,6 +76,14 @@ void RobotelevatorStatemachineState::undockingTimePassed(RobotelevatorStatemachi
 
 void RobotelevatorStatemachineState::Default(RobotelevatorStatemachineContext& context)
 {
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "TRANSITION   : Default"
+            << std::endl;
+    }
+
     throw (
         TransitionUndefinedException(
             context.getState().getName(),
@@ -86,6 +94,30 @@ void RobotelevatorStatemachineState::Default(RobotelevatorStatemachineContext& c
 void MainMap_Parked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Parked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Parked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::Parked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -93,11 +125,35 @@ void MainMap_Parked::startCleanup(RobotelevatorStatemachineContext& context)
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Parked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Parked::startCleanup()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.moveDown();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::Parked::startCleanup()"
+                << std::endl;
+        }
+
         context.setState(MainMap::MovingDownTo2ndFloor);
     }
     catch (...)
@@ -112,6 +168,30 @@ void MainMap_Parked::startCleanup(RobotelevatorStatemachineContext& context)
 void MainMap_MovingDownTo2ndFloor::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::MovingDownTo2ndFloor"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::MovingDownTo2ndFloor::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::MovingDownTo2ndFloor::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -119,11 +199,35 @@ void MainMap_MovingDownTo2ndFloor::carrierButtonPressed2ndFloor(RobotelevatorSta
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::MovingDownTo2ndFloor"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::MovingDownTo2ndFloor::carrierButtonPressed2ndFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.stop();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::MovingDownTo2ndFloor::carrierButtonPressed2ndFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotExit2ndFloorRobotDocked);
     }
     catch (...)
@@ -138,6 +242,30 @@ void MainMap_MovingDownTo2ndFloor::carrierButtonPressed2ndFloor(RobotelevatorSta
 void MainMap_WaitingForRobotExit2ndFloorRobotDocked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit2ndFloorRobotDocked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit2ndFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::WaitingForRobotExit2ndFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -145,11 +273,35 @@ void MainMap_WaitingForRobotExit2ndFloorRobotDocked::robotButtonReleased2ndFloor
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit2ndFloorRobotDocked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit2ndFloorRobotDocked::robotButtonReleased2ndFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.startUndockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit2ndFloorRobotDocked::robotButtonReleased2ndFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotExit2ndFloorRobotUndocked);
     }
     catch (...)
@@ -164,6 +316,30 @@ void MainMap_WaitingForRobotExit2ndFloorRobotDocked::robotButtonReleased2ndFloor
 void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit2ndFloorRobotUndocked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit2ndFloorRobotUndocked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::WaitingForRobotExit2ndFloorRobotUndocked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -171,11 +347,35 @@ void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::robotButtonPressed2ndFloo
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit2ndFloorRobotUndocked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit2ndFloorRobotUndocked::robotButtonPressed2ndFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.cancelUndockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit2ndFloorRobotUndocked::robotButtonPressed2ndFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotExit2ndFloorRobotDocked);
     }
     catch (...)
@@ -191,10 +391,34 @@ void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::undockingTimePassed(Robot
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit2ndFloorRobotUndocked"
+                << std::endl;
+    }
+
     if (ctxt.getCurrentUndockingTimerId() == undockingtimerId)
     {
         context.getState().Exit(context);
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "ENTER TRANSITION: MainMap::WaitingForRobotExit2ndFloorRobotUndocked::undockingTimePassed(int undockingtimerId)"
+                << std::endl;
+        }
+
         // No actions.
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit2ndFloorRobotUndocked::undockingTimePassed(int undockingtimerId)"
+                << std::endl;
+        }
+
         context.setState(MainMap::Cleaning2ndFloor);
         context.getState().Entry(context);
     }
@@ -208,6 +432,30 @@ void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::undockingTimePassed(Robot
 void MainMap_Cleaning2ndFloor::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Cleaning2ndFloor"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Cleaning2ndFloor::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::Cleaning2ndFloor::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -215,11 +463,35 @@ void MainMap_Cleaning2ndFloor::robotButtonPressed2ndFloor(RobotelevatorStatemach
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Cleaning2ndFloor"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Cleaning2ndFloor::robotButtonPressed2ndFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.startDockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::Cleaning2ndFloor::robotButtonPressed2ndFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotEnter2ndFloorRobotDocked);
     }
     catch (...)
@@ -234,6 +506,30 @@ void MainMap_Cleaning2ndFloor::robotButtonPressed2ndFloor(RobotelevatorStatemach
 void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotEnter2ndFloorRobotDocked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotEnter2ndFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::WaitingForRobotEnter2ndFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -241,13 +537,37 @@ void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(Robotele
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotEnter2ndFloorRobotDocked"
+                << std::endl;
+    }
+
     if (ctxt.getCurrentDockingTimerId() == dockingtimerId)
     {
         context.getState().Exit(context);
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "ENTER TRANSITION: MainMap::WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(int dockingtimerId)"
+                << std::endl;
+        }
+
         context.clearState();
         try
         {
             ctxt.moveDown();
+            if (context.getDebugFlag())
+            {
+                std::ostream& str = context.getDebugStream();
+
+                str << "EXIT TRANSITION : MainMap::WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(int dockingtimerId)"
+                    << std::endl;
+            }
+
             context.setState(MainMap::MovingDownTo1stFloor);
         }
         catch (...)
@@ -268,11 +588,35 @@ void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::robotButtonReleased2ndFloo
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotEnter2ndFloorRobotDocked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotEnter2ndFloorRobotDocked::robotButtonReleased2ndFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.cancelDockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotEnter2ndFloorRobotDocked::robotButtonReleased2ndFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::Cleaning2ndFloor);
     }
     catch (...)
@@ -287,6 +631,30 @@ void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::robotButtonReleased2ndFloo
 void MainMap_MovingDownTo1stFloor::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::MovingDownTo1stFloor"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::MovingDownTo1stFloor::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::MovingDownTo1stFloor::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -294,11 +662,35 @@ void MainMap_MovingDownTo1stFloor::carrierButtonPressed1stFloor(RobotelevatorSta
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::MovingDownTo1stFloor"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::MovingDownTo1stFloor::carrierButtonPressed1stFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.stop();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::MovingDownTo1stFloor::carrierButtonPressed1stFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotExit1stFloorRobotDocked);
     }
     catch (...)
@@ -313,6 +705,30 @@ void MainMap_MovingDownTo1stFloor::carrierButtonPressed1stFloor(RobotelevatorSta
 void MainMap_WaitingForRobotExit1stFloorRobotDocked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit1stFloorRobotDocked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -320,11 +736,35 @@ void MainMap_WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit1stFloorRobotDocked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.startUndockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotExit1stFloorRobotUndocked);
     }
     catch (...)
@@ -339,6 +779,30 @@ void MainMap_WaitingForRobotExit1stFloorRobotDocked::robotButtonReleased2ndFloor
 void MainMap_WaitingForRobotExit1stFloorRobotUndocked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit1stFloorRobotUndocked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotUndocked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotUndocked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -346,11 +810,35 @@ void MainMap_WaitingForRobotExit1stFloorRobotUndocked::robotButtonPressed1stFloo
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit1stFloorRobotUndocked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotUndocked::robotButtonPressed1stFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.cancelUndockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotUndocked::robotButtonPressed1stFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotExit1stFloorRobotDocked);
     }
     catch (...)
@@ -366,10 +854,34 @@ void MainMap_WaitingForRobotExit1stFloorRobotUndocked::undockingTimePassed(Robot
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotExit1stFloorRobotUndocked"
+                << std::endl;
+    }
+
     if (ctxt.getCurrentUndockingTimerId() == undockingtimerId)
     {
         context.getState().Exit(context);
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "ENTER TRANSITION: MainMap::WaitingForRobotExit1stFloorRobotUndocked::undockingTimePassed(int undockingtimerId)"
+                << std::endl;
+        }
+
         // No actions.
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotExit1stFloorRobotUndocked::undockingTimePassed(int undockingtimerId)"
+                << std::endl;
+        }
+
         context.setState(MainMap::Cleaning1stFloor);
         context.getState().Entry(context);
     }
@@ -383,6 +895,30 @@ void MainMap_WaitingForRobotExit1stFloorRobotUndocked::undockingTimePassed(Robot
 void MainMap_Cleaning1stFloor::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Cleaning1stFloor"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Cleaning1stFloor::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::Cleaning1stFloor::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -390,11 +926,35 @@ void MainMap_Cleaning1stFloor::robotButtonPressed1stFloor(RobotelevatorStatemach
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Cleaning1stFloor"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Cleaning1stFloor::robotButtonPressed1stFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.startDockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::Cleaning1stFloor::robotButtonPressed1stFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::WaitingForRobotEnter1stFloorRobotDocked);
     }
     catch (...)
@@ -409,6 +969,30 @@ void MainMap_Cleaning1stFloor::robotButtonPressed1stFloor(RobotelevatorStatemach
 void MainMap_WaitingForRobotEnter1stFloorRobotDocked::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotEnter1stFloorRobotDocked"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotEnter1stFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::WaitingForRobotEnter1stFloorRobotDocked::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -416,13 +1000,37 @@ void MainMap_WaitingForRobotEnter1stFloorRobotDocked::dockingTimePassed(Robotele
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotEnter1stFloorRobotDocked"
+                << std::endl;
+    }
+
     if (ctxt.getCurrentDockingTimerId() == dockingtimerId)
     {
         context.getState().Exit(context);
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "ENTER TRANSITION: MainMap::WaitingForRobotEnter1stFloorRobotDocked::dockingTimePassed(int dockingtimerId)"
+                << std::endl;
+        }
+
         context.clearState();
         try
         {
             ctxt.moveUp();
+            if (context.getDebugFlag())
+            {
+                std::ostream& str = context.getDebugStream();
+
+                str << "EXIT TRANSITION : MainMap::WaitingForRobotEnter1stFloorRobotDocked::dockingTimePassed(int dockingtimerId)"
+                    << std::endl;
+            }
+
             context.setState(MainMap::MovingUpToParkingPosition);
         }
         catch (...)
@@ -443,11 +1051,35 @@ void MainMap_WaitingForRobotEnter1stFloorRobotDocked::robotButtonReleased1stFloo
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::WaitingForRobotEnter1stFloorRobotDocked"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::WaitingForRobotEnter1stFloorRobotDocked::robotButtonReleased1stFloor()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.cancelDockingTimer();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::WaitingForRobotEnter1stFloorRobotDocked::robotButtonReleased1stFloor()"
+                << std::endl;
+        }
+
         context.setState(MainMap::Cleaning1stFloor);
     }
     catch (...)
@@ -462,6 +1094,30 @@ void MainMap_WaitingForRobotEnter1stFloorRobotDocked::robotButtonReleased1stFloo
 void MainMap_MovingUpToParkingPosition::Default(RobotelevatorStatemachineContext& context)
 {
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::MovingUpToParkingPosition"
+                << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::MovingUpToParkingPosition::Default()"
+            << std::endl;
+    }
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "EXIT TRANSITION : MainMap::MovingUpToParkingPosition::Default()"
+            << std::endl;
+    }
+
 
 }
 
@@ -469,11 +1125,35 @@ void MainMap_MovingUpToParkingPosition::carrierButtonPressedParkingPosition(Robo
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::MovingUpToParkingPosition"
+                << std::endl;
+    }
+
     context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::MovingUpToParkingPosition::carrierButtonPressedParkingPosition()"
+            << std::endl;
+    }
+
     context.clearState();
     try
     {
         ctxt.stop();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::MovingUpToParkingPosition::carrierButtonPressedParkingPosition()"
+                << std::endl;
+        }
+
         context.setState(MainMap::Parked);
     }
     catch (...)

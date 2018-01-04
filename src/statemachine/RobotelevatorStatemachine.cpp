@@ -13,6 +13,8 @@
 RobotelevatorStatemachine::RobotelevatorStatemachine(
 		IElevatorMotor* elevatorMotor) :
 		m_statemachineContext(*this), m_elevatorMotor(elevatorMotor) {
+	m_statemachineContext.setDebugFlag(true);
+
 }
 
 void RobotelevatorStatemachine::moveDown() {

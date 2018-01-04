@@ -275,52 +275,72 @@ public:
 
     inline void carrierButtonPressed1stFloor()
     {
+        setTransition("carrierButtonPressed1stFloor");
         getState().carrierButtonPressed1stFloor(*this);
+        setTransition(NULL);
     };
 
     inline void carrierButtonPressed2ndFloor()
     {
+        setTransition("carrierButtonPressed2ndFloor");
         getState().carrierButtonPressed2ndFloor(*this);
+        setTransition(NULL);
     };
 
     inline void carrierButtonPressedParkingPosition()
     {
+        setTransition("carrierButtonPressedParkingPosition");
         getState().carrierButtonPressedParkingPosition(*this);
+        setTransition(NULL);
     };
 
     inline void dockingTimePassed(int dockingtimerId)
     {
+        setTransition("dockingTimePassed");
         getState().dockingTimePassed(*this, dockingtimerId);
+        setTransition(NULL);
     };
 
     inline void robotButtonPressed1stFloor()
     {
+        setTransition("robotButtonPressed1stFloor");
         getState().robotButtonPressed1stFloor(*this);
+        setTransition(NULL);
     };
 
     inline void robotButtonPressed2ndFloor()
     {
+        setTransition("robotButtonPressed2ndFloor");
         getState().robotButtonPressed2ndFloor(*this);
+        setTransition(NULL);
     };
 
     inline void robotButtonReleased1stFloor()
     {
+        setTransition("robotButtonReleased1stFloor");
         getState().robotButtonReleased1stFloor(*this);
+        setTransition(NULL);
     };
 
     inline void robotButtonReleased2ndFloor()
     {
+        setTransition("robotButtonReleased2ndFloor");
         getState().robotButtonReleased2ndFloor(*this);
+        setTransition(NULL);
     };
 
     inline void startCleanup()
     {
+        setTransition("startCleanup");
         getState().startCleanup(*this);
+        setTransition(NULL);
     };
 
     inline void undockingTimePassed(int undockingtimerId)
     {
+        setTransition("undockingTimePassed");
         getState().undockingTimePassed(*this, undockingtimerId);
+        setTransition(NULL);
     };
 
 private:
