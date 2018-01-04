@@ -10,11 +10,12 @@
 
 #include "RobotelevatorStatemachine_sm.h"
 #include "../IElevatorMotor.h"
+#include "../Timer.h"
 #include <mutex>
 
 class RobotelevatorStatemachine {
 public:
-	explicit RobotelevatorStatemachine(IElevatorMotor* elevatorMotor);
+	explicit RobotelevatorStatemachine(IElevatorMotor* elevatorMotor, Timer* dockUndockTimer);
 	virtual ~RobotelevatorStatemachine() {
 	}
 
@@ -54,6 +55,7 @@ private:
 	std::mutex m_incomingEventSequentialisingMutex;
 
 	IElevatorMotor* m_elevatorMotor;
+	Timer* m_dockUndockTimer;
 
 	int m_nextUndockingTimerId = 0;
 	int m_nextDockingTimerId = 0;

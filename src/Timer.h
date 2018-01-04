@@ -13,7 +13,6 @@
 class Timer {
 public:
 	explicit Timer(unsigned int timeout_ms);
-	virtual ~Timer();
 
 	void startTimer(int currentStartId, std::function<void( int )> timerFinishedCallback);
 

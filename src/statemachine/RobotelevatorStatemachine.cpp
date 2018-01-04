@@ -9,10 +9,12 @@
 
 #include <thread>
 #include <chrono>
+#include <functional>
 
 RobotelevatorStatemachine::RobotelevatorStatemachine(
-		IElevatorMotor* elevatorMotor) :
-		m_statemachineContext(*this), m_elevatorMotor(elevatorMotor) {
+		IElevatorMotor* elevatorMotor, Timer* dockUndockTimer) :
+		m_statemachineContext(*this), m_elevatorMotor(elevatorMotor), m_dockUndockTimer(
+				dockUndockTimer) {
 	m_statemachineContext.setDebugFlag(true);
 
 }
@@ -33,11 +35,8 @@ void RobotelevatorStatemachine::startUndockingTimer() {
 	m_currentUndockingTimerId = m_nextUndockingTimerId;
 	++m_nextUndockingTimerId;
 
-	auto undockingTimerId = m_currentUndockingTimerId;
-	std::thread([=]() {
-		std::this_thread::sleep_for(std::chrono::seconds(10));
-		undockingTimePassed(undockingTimerId);
-	}).detach();
+	m_dockUndockTimer->startTimer(m_currentUndockingTimerId,
+			std::bind(&RobotelevatorStatemachine::undockingTimePassed, this, std::placeholders::_1));
 }
 
 void RobotelevatorStatemachine::cancelUndockingTimer() {
@@ -48,11 +47,8 @@ void RobotelevatorStatemachine::startDockingTimer() {
 	m_currentDockingTimerId = m_nextDockingTimerId;
 	++m_nextDockingTimerId;
 
-	auto dockingTimerId = m_currentDockingTimerId;
-	std::thread([=]() {
-		std::this_thread::sleep_for(std::chrono::seconds(10));
-		dockingTimePassed(dockingTimerId);
-	}).detach();
+	m_dockUndockTimer->startTimer(m_currentDockingTimerId,
+				std::bind(&RobotelevatorStatemachine::undockingTimePassed, this, std::placeholders::_1));
 }
 
 void RobotelevatorStatemachine::cancelDockingTimer() {

@@ -8,6 +8,7 @@
 #include "statemachine/RobotelevatorStatemachine.h"
 #include "ServoswitchedElevatorMotor.h"
 #include "Buttons.h"
+#include "Timer.h"
 
 #include <wiringPi.h>
 
@@ -18,7 +19,8 @@ int main() {
 	wiringPiSetupGpio();
 
 	ServoswitchedElevatorMotor motor;
-	RobotelevatorStatemachine statemachine(&motor);
+	Timer dockUndockTimer(10000);
+	RobotelevatorStatemachine statemachine(&motor, &dockUndockTimer);
 	Buttons buttons(&statemachine);
 
 	statemachine.startCleanup();
