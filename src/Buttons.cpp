@@ -12,8 +12,8 @@
 
 Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 		m_robotElevatorStatemachine(robotElevatorStatemachine), m_carrierButton2ndFloor(
-				10), m_carrierButton1stFloor(11), m_carrierButtonParkingPosition(
-				12), m_robotButton2ndFloor(13), m_robotButton1stFloor(14) {
+				22), m_carrierButton1stFloor(23), m_carrierButtonParkingPosition(
+				24), m_robotButton2ndFloor(25), m_robotButton1stFloor(26) {
 	auto buttonsStateChangePollingThread =
 			std::thread(
 					[=]() {
