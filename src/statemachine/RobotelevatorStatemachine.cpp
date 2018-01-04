@@ -48,7 +48,7 @@ void RobotelevatorStatemachine::startDockingTimer() {
 	++m_nextDockingTimerId;
 
 	m_dockUndockTimer->startTimer(m_currentDockingTimerId,
-				std::bind(&RobotelevatorStatemachine::undockingTimePassed, this, std::placeholders::_1));
+				std::bind(&RobotelevatorStatemachine::dockingTimePassed, this, std::placeholders::_1));
 }
 
 void RobotelevatorStatemachine::cancelDockingTimer() {
