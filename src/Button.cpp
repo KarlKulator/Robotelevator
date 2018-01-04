@@ -11,7 +11,7 @@
 
 Button::Button(unsigned int broadcomPinId) : m_broadcomPinId(broadcomPinId){
 	pinMode(m_broadcomPinId, INPUT);
-	pullUpDnControl(m_broadcomPinId, PUD_UP);
+	pullUpDnControl(m_broadcomPinId, PUD_DOWN);
 	m_isPressed = digitalRead(m_broadcomPinId);
 }
 
