@@ -8,6 +8,7 @@
 #include "statemachine/RobotelevatorStatemachine.h"
 #include "ServoswitchedElevatorMotor.h"
 #include "Buttons.h"
+#include "CleanupScheduler.h"
 
 #include <wiringPi.h>
 
@@ -16,6 +17,8 @@
 
 int main(){
 	wiringPiSetupGpio();
+
+	CleanupScheduler scheduler;
 
 	ServoswitchedElevatorMotor motor;
 	RobotelevatorStatemachine statemachine(&motor);
