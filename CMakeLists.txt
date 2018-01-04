@@ -7,10 +7,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 
-SET(CMAKE_CXX_FLAGS -pthread)	
+SET(CMAKE_CXX_FLAGS -pthread)
 
 add_executable(robotElevator src/main.cpp src/Button.cpp src/Buttons.cpp src/PiServo.cpp src/ServoswitchedElevatorMotor.cpp src/statemachine/RobotelevatorStatemachine.cpp src/statemachine/RobotelevatorStatemachine_sm.cpp)
 
-target_include_directories(robotElevator PRIVATE ${CMAKE_SOURCE_DIR}/tools/smc/lib/C++)
+target_include_directories(robotElevator PRIVATE ${CMAKE_SOURCE_DIR}/src/statemachine)
 target_link_libraries(robotElevator PRIVATE wiringPi)
 
