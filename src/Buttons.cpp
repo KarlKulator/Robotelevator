@@ -9,6 +9,7 @@
 
 #include <wiringPi.h>
 #include <thread>
+#include <iostream>
 
 Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 		m_robotElevatorStatemachine(robotElevatorStatemachine), m_carrierButton2ndFloor(
@@ -80,38 +81,57 @@ Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 }
 
 void Buttons::carrierButtonPressed2ndFloor() {
+	std::cout << "carrierButtonPressed2ndFloor" << std::endl;
 	m_robotElevatorStatemachine->carrierButtonPressed2ndFloor();
 }
 
 void Buttons::carrierButtonPressed1stFloor() {
+	std::cout << "carrierButtonPressed1stFloor" << std::endl;
+
 	m_robotElevatorStatemachine->carrierButtonPressed2ndFloor();
 }
 
 void Buttons::carrierButtonPressedParkingPosition() {
+	std::cout << "carrierButtonPressedParkingPosition" << std::endl;
+
 	m_robotElevatorStatemachine->carrierButtonPressedParkingPosition();
 }
 
 void Buttons::robotButtonPressed2ndFloor() {
+	std::cout << "robotButtonPressed2ndFloor" << std::endl;
+
 	m_robotElevatorStatemachine->robotButtonPressed2ndFloor();
 }
 
 void Buttons::robotButtonPressed1stFloor() {
+	std::cout << "robotButtonPressed1stFloor" << std::endl;
+
 	m_robotElevatorStatemachine->robotButtonPressed1stFloor();
 }
 
 void Buttons::carrierButtonReleased2ndFloor() {
+	std::cout << "carrierButtonReleased2ndFloor" << std::endl;
+
 }
 
 void Buttons::carrierButtonReleased1stFloor() {
+	std::cout << "carrierButtonReleased1stFloor" << std::endl;
+
 }
 
 void Buttons::carrierButtonReleasedParkingPosition() {
+	std::cout << "carrierButtonReleasedParkingPosition" << std::endl;
+
 }
 
 void Buttons::robotButtonReleased2ndFloor() {
+	std::cout << "robotButtonReleased2ndFloor" << std::endl;
+
 	m_robotElevatorStatemachine->robotButtonReleased2ndFloor();
 }
 
 void Buttons::robotButtonReleased1stFloor() {
+	std::cout << "robotButtonReleased1stFloor" << std::endl;
+
 	m_robotElevatorStatemachine->robotButtonReleased1stFloor();
 }
