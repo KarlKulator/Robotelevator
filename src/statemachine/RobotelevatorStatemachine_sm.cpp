@@ -1146,6 +1146,7 @@ void MainMap_MovingUpToParkingPosition::carrierButtonPressedParkingPosition(Robo
     try
     {
         ctxt.stop();
+        ctxt.exit();
         if (context.getDebugFlag())
         {
             std::ostream& str = context.getDebugStream();

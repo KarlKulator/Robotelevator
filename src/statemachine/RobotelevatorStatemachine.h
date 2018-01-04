@@ -25,6 +25,7 @@ public:
 	void cancelUndockingTimer();
 	void startDockingTimer();
 	void cancelDockingTimer();
+	void exit();
 
 	void carrierButtonPressed1stFloor();
 	void carrierButtonPressed2ndFloor();
@@ -44,6 +45,10 @@ public:
 		return m_currentDockingTimerId;
 	}
 
+	bool isExited(){
+		return m_isExited;
+	}
+
 private:
 	RobotelevatorStatemachineContext m_statemachineContext;
 	std::mutex m_incomingEventSequentialisingMutex;
@@ -55,6 +60,8 @@ private:
 
 	int m_currentUndockingTimerId = -1;
 	int m_currentDockingTimerId = -1;
+
+	bool m_isExited = false;
 
 };
 

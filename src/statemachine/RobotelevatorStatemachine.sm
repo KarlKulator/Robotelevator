@@ -71,7 +71,7 @@ WaitingForRobotEnter1stFloorRobotDocked
 
 MovingUpToParkingPosition
 {
-    carrierButtonPressedParkingPosition Parked { stop(); }
+    carrierButtonPressedParkingPosition Parked { stop(); exit(); }
     Default nil { }
 }
 

@@ -8,17 +8,14 @@
 #include "statemachine/RobotelevatorStatemachine.h"
 #include "ServoswitchedElevatorMotor.h"
 #include "Buttons.h"
-#include "CleanupScheduler.h"
 
 #include <wiringPi.h>
 
 #include <chrono>
 #include <thread>
 
-int main(){
+int main() {
 	wiringPiSetupGpio();
-
-	CleanupScheduler scheduler;
 
 	ServoswitchedElevatorMotor motor;
 	RobotelevatorStatemachine statemachine(&motor);
@@ -26,8 +23,10 @@ int main(){
 
 	statemachine.startCleanup();
 
-	while(true)
-	   std::this_thread::sleep_for(std::chrono::hours::max());
+	while (true) {
+		if (statemachine.isExited()) {
+			return 0;
+		}
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
 }
-
-

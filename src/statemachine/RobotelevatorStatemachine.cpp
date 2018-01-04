@@ -59,6 +59,10 @@ void RobotelevatorStatemachine::cancelDockingTimer() {
 	m_currentDockingTimerId = -1;
 }
 
+void RobotelevatorStatemachine::exit() {
+	m_isExited = true;
+}
+
 void RobotelevatorStatemachine::carrierButtonPressed1stFloor() {
 	std::lock_guard<std::mutex> lockGuard(m_incomingEventSequentialisingMutex);
 	m_statemachineContext.carrierButtonPressed1stFloor();
@@ -108,3 +112,4 @@ void RobotelevatorStatemachine::undockingTimePassed(int timerId) {
 	std::lock_guard<std::mutex> lockGuard(m_incomingEventSequentialisingMutex);
 	m_statemachineContext.undockingTimePassed(timerId);
 }
+
