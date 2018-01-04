@@ -88,7 +88,7 @@ void Buttons::carrierButtonPressed2ndFloor() {
 void Buttons::carrierButtonPressed1stFloor() {
 	std::cout << "carrierButtonPressed1stFloor" << std::endl;
 
-	m_robotElevatorStatemachine->carrierButtonPressed2ndFloor();
+	m_robotElevatorStatemachine->carrierButtonPressed1stFloor();
 }
 
 void Buttons::carrierButtonPressedParkingPosition() {
