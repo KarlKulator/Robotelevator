@@ -39,7 +39,7 @@ void RobotelevatorStatemachineState::carrierButtonPressedParkingPosition(Robotel
     Default(context);
 }
 
-void RobotelevatorStatemachineState::dockingTimePassed(RobotelevatorStatemachineContext& context)
+void RobotelevatorStatemachineState::dockingTimePassed(RobotelevatorStatemachineContext& context, int dockingtimerId)
 {
     Default(context);
 }
@@ -69,7 +69,7 @@ void RobotelevatorStatemachineState::startCleanup(RobotelevatorStatemachineConte
     Default(context);
 }
 
-void RobotelevatorStatemachineState::undockingTimePassed(RobotelevatorStatemachineContext& context)
+void RobotelevatorStatemachineState::undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId)
 {
     Default(context);
 }
@@ -187,12 +187,21 @@ void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::robotButtonPressed2ndFloo
 
 }
 
-void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::undockingTimePassed(RobotelevatorStatemachineContext& context)
+void MainMap_WaitingForRobotExit2ndFloorRobotUndocked::undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId)
 {
+    RobotelevatorStatemachine& ctxt = context.getOwner();
 
-    context.getState().Exit(context);
-    context.setState(MainMap::Cleaning2ndFloor);
-    context.getState().Entry(context);
+    if (ctxt.getCurrentUndockingTimerId() == undockingtimerId)
+    {
+        context.getState().Exit(context);
+        // No actions.
+        context.setState(MainMap::Cleaning2ndFloor);
+        context.getState().Entry(context);
+    }
+    else
+    {
+         MainMap_Default::undockingTimePassed(context, undockingtimerId);
+    }
 
 }
 
@@ -228,23 +237,30 @@ void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::Default(RobotelevatorState
 
 }
 
-void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(RobotelevatorStatemachineContext& context)
+void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(RobotelevatorStatemachineContext& context, int dockingtimerId)
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
-    context.getState().Exit(context);
-    context.clearState();
-    try
+    if (ctxt.getCurrentDockingTimerId() == dockingtimerId)
     {
-        ctxt.moveDown();
-        context.setState(MainMap::MovingDownTo1stFloor);
+        context.getState().Exit(context);
+        context.clearState();
+        try
+        {
+            ctxt.moveDown();
+            context.setState(MainMap::MovingDownTo1stFloor);
+        }
+        catch (...)
+        {
+            context.setState(MainMap::MovingDownTo1stFloor);
+            throw;
+        }
+        context.getState().Entry(context);
     }
-    catch (...)
+    else
     {
-        context.setState(MainMap::MovingDownTo1stFloor);
-        throw;
+         MainMap_Default::dockingTimePassed(context, dockingtimerId);
     }
-    context.getState().Entry(context);
 
 }
 
@@ -346,12 +362,21 @@ void MainMap_WaitingForRobotExit1stFloorRobotUndocked::robotButtonPressed1stFloo
 
 }
 
-void MainMap_WaitingForRobotExit1stFloorRobotUndocked::undockingTimePassed(RobotelevatorStatemachineContext& context)
+void MainMap_WaitingForRobotExit1stFloorRobotUndocked::undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId)
 {
+    RobotelevatorStatemachine& ctxt = context.getOwner();
 
-    context.getState().Exit(context);
-    context.setState(MainMap::Cleaning1stFloor);
-    context.getState().Entry(context);
+    if (ctxt.getCurrentUndockingTimerId() == undockingtimerId)
+    {
+        context.getState().Exit(context);
+        // No actions.
+        context.setState(MainMap::Cleaning1stFloor);
+        context.getState().Entry(context);
+    }
+    else
+    {
+         MainMap_Default::undockingTimePassed(context, undockingtimerId);
+    }
 
 }
 
@@ -387,23 +412,30 @@ void MainMap_WaitingForRobotEnter1stFloorRobotDocked::Default(RobotelevatorState
 
 }
 
-void MainMap_WaitingForRobotEnter1stFloorRobotDocked::dockingTimePassed(RobotelevatorStatemachineContext& context)
+void MainMap_WaitingForRobotEnter1stFloorRobotDocked::dockingTimePassed(RobotelevatorStatemachineContext& context, int dockingtimerId)
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
-    context.getState().Exit(context);
-    context.clearState();
-    try
+    if (ctxt.getCurrentDockingTimerId() == dockingtimerId)
     {
-        ctxt.moveUp();
-        context.setState(MainMap::MovingUpToParkingPosition);
+        context.getState().Exit(context);
+        context.clearState();
+        try
+        {
+            ctxt.moveUp();
+            context.setState(MainMap::MovingUpToParkingPosition);
+        }
+        catch (...)
+        {
+            context.setState(MainMap::MovingUpToParkingPosition);
+            throw;
+        }
+        context.getState().Entry(context);
     }
-    catch (...)
+    else
     {
-        context.setState(MainMap::MovingUpToParkingPosition);
-        throw;
+         MainMap_Default::dockingTimePassed(context, dockingtimerId);
     }
-    context.getState().Entry(context);
 
 }
 

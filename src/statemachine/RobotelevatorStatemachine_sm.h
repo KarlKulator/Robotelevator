@@ -47,13 +47,13 @@ public:
     virtual void carrierButtonPressed1stFloor(RobotelevatorStatemachineContext& context);
     virtual void carrierButtonPressed2ndFloor(RobotelevatorStatemachineContext& context);
     virtual void carrierButtonPressedParkingPosition(RobotelevatorStatemachineContext& context);
-    virtual void dockingTimePassed(RobotelevatorStatemachineContext& context);
+    virtual void dockingTimePassed(RobotelevatorStatemachineContext& context, int dockingtimerId);
     virtual void robotButtonPressed1stFloor(RobotelevatorStatemachineContext& context);
     virtual void robotButtonPressed2ndFloor(RobotelevatorStatemachineContext& context);
     virtual void robotButtonReleased1stFloor(RobotelevatorStatemachineContext& context);
     virtual void robotButtonReleased2ndFloor(RobotelevatorStatemachineContext& context);
     virtual void startCleanup(RobotelevatorStatemachineContext& context);
-    virtual void undockingTimePassed(RobotelevatorStatemachineContext& context);
+    virtual void undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId);
 
 protected:
 
@@ -135,7 +135,7 @@ public:
 
     virtual void Default(RobotelevatorStatemachineContext& context);
     virtual void robotButtonPressed2ndFloor(RobotelevatorStatemachineContext& context);
-    virtual void undockingTimePassed(RobotelevatorStatemachineContext& context);
+    virtual void undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId);
 };
 
 class MainMap_Cleaning2ndFloor :
@@ -159,7 +159,7 @@ public:
     {};
 
     virtual void Default(RobotelevatorStatemachineContext& context);
-    virtual void dockingTimePassed(RobotelevatorStatemachineContext& context);
+    virtual void dockingTimePassed(RobotelevatorStatemachineContext& context, int dockingtimerId);
     virtual void robotButtonReleased2ndFloor(RobotelevatorStatemachineContext& context);
 };
 
@@ -197,7 +197,7 @@ public:
 
     virtual void Default(RobotelevatorStatemachineContext& context);
     virtual void robotButtonPressed1stFloor(RobotelevatorStatemachineContext& context);
-    virtual void undockingTimePassed(RobotelevatorStatemachineContext& context);
+    virtual void undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId);
 };
 
 class MainMap_Cleaning1stFloor :
@@ -221,7 +221,7 @@ public:
     {};
 
     virtual void Default(RobotelevatorStatemachineContext& context);
-    virtual void dockingTimePassed(RobotelevatorStatemachineContext& context);
+    virtual void dockingTimePassed(RobotelevatorStatemachineContext& context, int dockingtimerId);
     virtual void robotButtonReleased1stFloor(RobotelevatorStatemachineContext& context);
 };
 
@@ -288,9 +288,9 @@ public:
         getState().carrierButtonPressedParkingPosition(*this);
     };
 
-    inline void dockingTimePassed()
+    inline void dockingTimePassed(int dockingtimerId)
     {
-        getState().dockingTimePassed(*this);
+        getState().dockingTimePassed(*this, dockingtimerId);
     };
 
     inline void robotButtonPressed1stFloor()
@@ -318,9 +318,9 @@ public:
         getState().startCleanup(*this);
     };
 
-    inline void undockingTimePassed()
+    inline void undockingTimePassed(int undockingtimerId)
     {
-        getState().undockingTimePassed(*this);
+        getState().undockingTimePassed(*this, undockingtimerId);
     };
 
 private:

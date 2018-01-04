@@ -66,7 +66,7 @@ digraph RobotelevatorStatemachine {
         [label="robotButtonReleased2ndFloor/\lstartUndockingTimer;\l"];
 
     "MainMap::WaitingForRobotExit2ndFloorRobotUndocked" -> "MainMap::Cleaning2ndFloor"
-        [label="undockingTimePassed/\l"];
+        [label="undockingTimePassed\l\[ctxt.getCurrentUndockingTimerId() == undockingtimerId\]/\l"];
 
     "MainMap::WaitingForRobotExit2ndFloorRobotUndocked" -> "MainMap::WaitingForRobotExit2ndFloorRobotDocked"
         [label="robotButtonPressed2ndFloor/\lcancelUndockingTimer;\l"];
@@ -75,7 +75,7 @@ digraph RobotelevatorStatemachine {
         [label="robotButtonPressed2ndFloor/\lstartDockingTimer;\l"];
 
     "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::MovingDownTo1stFloor"
-        [label="dockingTimePassed/\lmoveDown;\l"];
+        [label="dockingTimePassed\l\[ctxt.getCurrentDockingTimerId() == dockingtimerId\]/\lmoveDown;\l"];
 
     "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::Cleaning2ndFloor"
         [label="robotButtonReleased2ndFloor/\lcancelDockingTimer;\l"];
@@ -87,7 +87,7 @@ digraph RobotelevatorStatemachine {
         [label="robotButtonReleased2ndFloor/\lstartUndockingTimer;\l"];
 
     "MainMap::WaitingForRobotExit1stFloorRobotUndocked" -> "MainMap::Cleaning1stFloor"
-        [label="undockingTimePassed/\l"];
+        [label="undockingTimePassed\l\[ctxt.getCurrentUndockingTimerId() == undockingtimerId\]/\l"];
 
     "MainMap::WaitingForRobotExit1stFloorRobotUndocked" -> "MainMap::WaitingForRobotExit1stFloorRobotDocked"
         [label="robotButtonPressed1stFloor/\lcancelUndockingTimer;\l"];
@@ -96,7 +96,7 @@ digraph RobotelevatorStatemachine {
         [label="robotButtonPressed1stFloor/\lstartDockingTimer;\l"];
 
     "MainMap::WaitingForRobotEnter1stFloorRobotDocked" -> "MainMap::MovingUpToParkingPosition"
-        [label="dockingTimePassed/\lmoveUp;\l"];
+        [label="dockingTimePassed\l\[ctxt.getCurrentDockingTimerId() == dockingtimerId\]/\lmoveUp;\l"];
 
     "MainMap::WaitingForRobotEnter1stFloorRobotDocked" -> "MainMap::Cleaning1stFloor"
         [label="robotButtonReleased1stFloor/\lcancelDockingTimer;\l"];

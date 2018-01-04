@@ -1,0 +1,61 @@
+/*
+ * RobotelevatorStatemachine.h
+ *
+ *  Created on: Jan 3, 2018
+ *      Author: veit
+ */
+
+#ifndef SRC_STATEMACHINE_ROBOTELEVATORSTATEMACHINE_H_
+#define SRC_STATEMACHINE_ROBOTELEVATORSTATEMACHINE_H_
+
+#include "RobotelevatorStatemachine_sm.h"
+#include "../IElevatorMotor.h"
+#include <mutex>
+
+class RobotelevatorStatemachine {
+public:
+	explicit RobotelevatorStatemachine(IElevatorMotor* elevatorMotor);
+	virtual ~RobotelevatorStatemachine() {
+	}
+
+	void moveDown();
+	void moveUp();
+	void stop();
+	void startUndockingTimer();
+	void cancelUndockingTimer();
+	void startDockingTimer();
+	void cancelDockingTimer();
+
+	void carrierButtonPressed1stFloor();
+	void carrierButtonPressed2ndFloor();
+	void carrierButtonPressedParkingPosition();
+	void dockingTimePassed(int timerId);
+	void robotButtonPressed1stFloor();
+	void robotButtonPressed2ndFloor();
+	void robotButtonReleased1stFloor();
+	void robotButtonReleased2ndFloor();
+	void startCleanup();
+	void undockingTimePassed(int timerId);
+
+	int getCurrentUndockingTimerId() {
+		return m_currentUndockingTimerId;
+	}
+	int getCurrentDockingTimerId() {
+		return m_currentDockingTimerId;
+	}
+
+private:
+	RobotelevatorStatemachineContext m_statemachineContext;
+	std::mutex m_incomingEventSequentialisingMutex;
+
+	IElevatorMotor* m_elevatorMotor;
+
+	int m_nextUndockingTimerId = 0;
+	int m_nextDockingTimerId = 0;
+
+	int m_currentUndockingTimerId = -1;
+	int m_currentDockingTimerId = -1;
+
+};
+
+#endif /* SRC_STATEMACHINE_ROBOTELEVATORSTATEMACHINE_H_ */

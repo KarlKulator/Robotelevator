@@ -21,7 +21,7 @@ WaitingForRobotExit2ndFloorRobotDocked
 }
 WaitingForRobotExit2ndFloorRobotUndocked
 {
-    undockingTimePassed Cleaning2ndFloor { }
+    undockingTimePassed(undockingtimerId: int) [ctxt.getCurrentUndockingTimerId() == undockingtimerId] Cleaning2ndFloor { }
     robotButtonPressed2ndFloor WaitingForRobotExit2ndFloorRobotDocked {cancelUndockingTimer();}
     Default nil { }
 }
@@ -32,7 +32,7 @@ Cleaning2ndFloor
 }
 WaitingForRobotEnter2ndFloorRobotDocked
 {
-	dockingTimePassed MovingDownTo1stFloor { moveDown(); }
+	dockingTimePassed(dockingtimerId: int) [ctxt.getCurrentDockingTimerId() == dockingtimerId] MovingDownTo1stFloor { moveDown(); }
     robotButtonReleased2ndFloor Cleaning2ndFloor {cancelDockingTimer();}
     Default nil { }
 }
@@ -51,7 +51,7 @@ WaitingForRobotExit1stFloorRobotDocked
 
 WaitingForRobotExit1stFloorRobotUndocked
 {
-    undockingTimePassed Cleaning1stFloor { }
+    undockingTimePassed(undockingtimerId: int) [ctxt.getCurrentUndockingTimerId() == undockingtimerId] Cleaning1stFloor { }
     robotButtonPressed1stFloor WaitingForRobotExit1stFloorRobotDocked {cancelUndockingTimer();}
     Default nil { }
 }
@@ -64,7 +64,7 @@ Cleaning1stFloor
 
 WaitingForRobotEnter1stFloorRobotDocked
 {
-	dockingTimePassed MovingUpToParkingPosition { moveUp(); }
+	dockingTimePassed(dockingtimerId: int) [ctxt.getCurrentDockingTimerId() == dockingtimerId] MovingUpToParkingPosition { moveUp(); }
     robotButtonReleased1stFloor Cleaning1stFloor {cancelDockingTimer();}
     Default nil { }
 }
