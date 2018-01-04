@@ -6,7 +6,7 @@
 //
 
 #include "RobotelevatorStatemachine.h"
-#include "src/statemachine/RobotelevatorStatemachine_sm.h"
+#include "RobotelevatorStatemachine_sm.h"
 
 using namespace statemap;
 

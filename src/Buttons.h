@@ -14,22 +14,21 @@
 class Buttons {
 public:
 	explicit Buttons(RobotelevatorStatemachine* robotElevatorStatemachine);
-	virtual ~Buttons();
 
-	static void carrierButtonPressed2ndFloor();
-	static void carrierButtonPressed1stFloor();
-	static void carrierButtonPressedParkingPosition();
-	static void robotButtonPressed2ndFloor();
-	static void robotButtonPressed1stFloor();
+	void carrierButtonPressed2ndFloor();
+	void carrierButtonPressed1stFloor();
+	void carrierButtonPressedParkingPosition();
+	void robotButtonPressed2ndFloor();
+	void robotButtonPressed1stFloor();
 
-	static void carrierButtonReleased2ndFloor();
-	static void carrierButtonReleased1stFloor();
-	static void carrierButtonReleasedParkingPosition();
-	static void robotButtonReleased2ndFloor();
-	static void robotButtonReleased1stFloor();
+	void carrierButtonReleased2ndFloor();
+	void carrierButtonReleased1stFloor();
+	void carrierButtonReleasedParkingPosition();
+	void robotButtonReleased2ndFloor();
+	void robotButtonReleased1stFloor();
 
 private:
-	RobotelevatorStatemachine* m_robotElevatorStatemachine
+	RobotelevatorStatemachine* m_robotElevatorStatemachine;
 
 	Button m_carrierButton2ndFloor;
 	Button m_carrierButton1stFloor;
