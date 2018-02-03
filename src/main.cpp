@@ -14,6 +14,7 @@
 
 #include <chrono>
 #include <thread>
+#include <iostream>
 
 int main() {
 	wiringPiSetupGpio();
@@ -27,6 +28,7 @@ int main() {
 
 	while (true) {
 		if (statemachine.isExited()) {
+            std::cout << "exited" << std::endl;
 			return 0;
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));
