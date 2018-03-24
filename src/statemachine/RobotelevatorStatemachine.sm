@@ -5,8 +5,8 @@
 %%
 Parked
 {
-    startCleanupFirstFloor MovingDownTo2ndFloor { moveDown(); }
-    startCleanupSecondFloor MovingDownTo1stFloor { moveDown(); }
+    startCleanupSecondFloor MovingDownTo2ndFloor { moveDown(); }
+    startCleanupFirstFloor MovingDownTo1stFloor { moveDown(); }
     Default nil { }
 }
 

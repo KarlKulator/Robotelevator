@@ -15,12 +15,14 @@
 #include <chrono>
 #include <thread>
 #include <iostream>
+#include <string.h>
 
 int main(int argc, char* argv[]) {
 	if (argc < 2) {
 		std::cout
 				<< "Not enough arguments. First argument needs to specify floor to clean."
 				<< std::endl;
+        return 0;
 	}
 
 	wiringPiSetupGpio();
@@ -30,14 +32,16 @@ int main(int argc, char* argv[]) {
 	RobotelevatorStatemachine statemachine(&motor, &dockUndockTimer);
 	Buttons buttons(&statemachine);
 
-	if (argv[1] == "2") {
-		statemachine.startCleanupFirstFloor();
+	if (strcmp(argv[1], "2") == 0) {
+		statemachine.startCleanupSecondFloor();
 
-	} else if (argv[1] == "1") {
+	} else if (strcmp(argv[1], "1") == 0) {
 		statemachine.startCleanupFirstFloor();
 
 	} else {
+		std::cout << argv[1] << std::endl;
 		std::cout << "Invalid arguments. First argument needs to specify floor to clean." << std::endl;
+        return 0;
 	}
 
 	while (true) {
