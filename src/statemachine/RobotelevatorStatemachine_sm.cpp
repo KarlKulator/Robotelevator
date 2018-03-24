@@ -64,7 +64,12 @@ void RobotelevatorStatemachineState::robotButtonReleased2ndFloor(RobotelevatorSt
     Default(context);
 }
 
-void RobotelevatorStatemachineState::startCleanup(RobotelevatorStatemachineContext& context)
+void RobotelevatorStatemachineState::startCleanupFirstFloor(RobotelevatorStatemachineContext& context)
+{
+    Default(context);
+}
+
+void RobotelevatorStatemachineState::startCleanupSecondFloor(RobotelevatorStatemachineContext& context)
 {
     Default(context);
 }
@@ -121,7 +126,7 @@ void MainMap_Parked::Default(RobotelevatorStatemachineContext& context)
 
 }
 
-void MainMap_Parked::startCleanup(RobotelevatorStatemachineContext& context)
+void MainMap_Parked::startCleanupFirstFloor(RobotelevatorStatemachineContext& context)
 {
     RobotelevatorStatemachine& ctxt = context.getOwner();
 
@@ -138,7 +143,7 @@ void MainMap_Parked::startCleanup(RobotelevatorStatemachineContext& context)
     {
         std::ostream& str = context.getDebugStream();
 
-        str << "ENTER TRANSITION: MainMap::Parked::startCleanup()"
+        str << "ENTER TRANSITION: MainMap::Parked::startCleanupFirstFloor()"
             << std::endl;
     }
 
@@ -150,7 +155,7 @@ void MainMap_Parked::startCleanup(RobotelevatorStatemachineContext& context)
         {
             std::ostream& str = context.getDebugStream();
 
-            str << "EXIT TRANSITION : MainMap::Parked::startCleanup()"
+            str << "EXIT TRANSITION : MainMap::Parked::startCleanupFirstFloor()"
                 << std::endl;
         }
 
@@ -159,6 +164,50 @@ void MainMap_Parked::startCleanup(RobotelevatorStatemachineContext& context)
     catch (...)
     {
         context.setState(MainMap::MovingDownTo2ndFloor);
+        throw;
+    }
+    context.getState().Entry(context);
+
+}
+
+void MainMap_Parked::startCleanupSecondFloor(RobotelevatorStatemachineContext& context)
+{
+    RobotelevatorStatemachine& ctxt = context.getOwner();
+
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "LEAVING STATE   : MainMap::Parked"
+                << std::endl;
+    }
+
+    context.getState().Exit(context);
+    if (context.getDebugFlag())
+    {
+        std::ostream& str = context.getDebugStream();
+
+        str << "ENTER TRANSITION: MainMap::Parked::startCleanupSecondFloor()"
+            << std::endl;
+    }
+
+    context.clearState();
+    try
+    {
+        ctxt.moveDown();
+        if (context.getDebugFlag())
+        {
+            std::ostream& str = context.getDebugStream();
+
+            str << "EXIT TRANSITION : MainMap::Parked::startCleanupSecondFloor()"
+                << std::endl;
+        }
+
+        context.setState(MainMap::MovingDownTo1stFloor);
+    }
+    catch (...)
+    {
+        context.setState(MainMap::MovingDownTo1stFloor);
         throw;
     }
     context.getState().Entry(context);
@@ -559,7 +608,7 @@ void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(Robotele
         context.clearState();
         try
         {
-            ctxt.moveDown();
+            ctxt.moveUp();
             if (context.getDebugFlag())
             {
                 std::ostream& str = context.getDebugStream();
@@ -568,11 +617,11 @@ void MainMap_WaitingForRobotEnter2ndFloorRobotDocked::dockingTimePassed(Robotele
                     << std::endl;
             }
 
-            context.setState(MainMap::MovingDownTo1stFloor);
+            context.setState(MainMap::MovingUpToParkingPosition);
         }
         catch (...)
         {
-            context.setState(MainMap::MovingDownTo1stFloor);
+            context.setState(MainMap::MovingUpToParkingPosition);
             throw;
         }
         context.getState().Entry(context);

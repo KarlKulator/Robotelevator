@@ -36,7 +36,8 @@ public:
 	void robotButtonPressed2ndFloor();
 	void robotButtonReleased1stFloor();
 	void robotButtonReleased2ndFloor();
-	void startCleanup();
+	void startCleanupFirstFloor();
+	void startCleanupSecondFloor();
 	void undockingTimePassed(int timerId);
 
 	int getCurrentUndockingTimerId() {
