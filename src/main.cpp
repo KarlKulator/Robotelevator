@@ -14,12 +14,13 @@
 
 #include <chrono>
 #include <thread>
+#include <iostream>
 
 int main() {
 	wiringPiSetupGpio();
 
 	ServoswitchedElevatorMotor motor;
-	Timer dockUndockTimer(10000);
+	Timer dockUndockTimer(20000);
 	RobotelevatorStatemachine statemachine(&motor, &dockUndockTimer);
 	Buttons buttons(&statemachine);
 
@@ -27,6 +28,7 @@ int main() {
 
 	while (true) {
 		if (statemachine.isExited()) {
+            std::cout << "exited" << std::endl;
 			return 0;
 		}
 		std::this_thread::sleep_for(std::chrono::seconds(1));

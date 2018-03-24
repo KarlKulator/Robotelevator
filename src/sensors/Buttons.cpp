@@ -14,7 +14,7 @@
 Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 		m_robotElevatorStatemachine(robotElevatorStatemachine), m_carrierButton2ndFloor(
 				22), m_carrierButton1stFloor(23), m_carrierButtonParkingPosition(
-				24), m_robotButton2ndFloor(25), m_robotButton1stFloor(26) {
+				24), m_robotButton2ndFloor(25), m_robotButton1stFloor(6) {
 	auto buttonsStateChangePollingThread =
 			std::thread(
 					[=]() {
@@ -53,10 +53,10 @@ Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 							}
 
 							switch(m_robotButton2ndFloor.updateAndReadButtonStateChange()) {
-								case ButtonStateChange::eWasPressed:
+								case ButtonStateChange::eWasReleased:
 								robotButtonPressed2ndFloor();
 								break;
-								case ButtonStateChange::eWasReleased:
+								case ButtonStateChange::eWasPressed:
 								robotButtonReleased2ndFloor();
 								break;
 								default:
@@ -64,10 +64,10 @@ Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 							}
 
 							switch(m_robotButton1stFloor.updateAndReadButtonStateChange()) {
-								case ButtonStateChange::eWasPressed:
+								case ButtonStateChange::eWasReleased:
 								robotButtonPressed1stFloor();
 								break;
-								case ButtonStateChange::eWasReleased:
+								case ButtonStateChange::eWasPressed:
 								robotButtonReleased1stFloor();
 								break;
 								default:
