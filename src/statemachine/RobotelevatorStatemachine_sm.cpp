@@ -159,11 +159,11 @@ void MainMap_Parked::startCleanupFirstFloor(RobotelevatorStatemachineContext& co
                 << std::endl;
         }
 
-        context.setState(MainMap::MovingDownTo2ndFloor);
+        context.setState(MainMap::MovingDownTo1stFloor);
     }
     catch (...)
     {
-        context.setState(MainMap::MovingDownTo2ndFloor);
+        context.setState(MainMap::MovingDownTo1stFloor);
         throw;
     }
     context.getState().Entry(context);
@@ -203,11 +203,11 @@ void MainMap_Parked::startCleanupSecondFloor(RobotelevatorStatemachineContext& c
                 << std::endl;
         }
 
-        context.setState(MainMap::MovingDownTo1stFloor);
+        context.setState(MainMap::MovingDownTo2ndFloor);
     }
     catch (...)
     {
-        context.setState(MainMap::MovingDownTo1stFloor);
+        context.setState(MainMap::MovingDownTo2ndFloor);
         throw;
     }
     context.getState().Entry(context);

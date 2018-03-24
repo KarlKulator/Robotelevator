@@ -57,10 +57,10 @@ digraph RobotelevatorStatemachine {
     //
 
     "MainMap::Parked" -> "MainMap::MovingDownTo2ndFloor"
-        [label="startCleanupFirstFloor/\lmoveDown;\l"];
+        [label="startCleanupSecondFloor/\lmoveDown;\l"];
 
     "MainMap::Parked" -> "MainMap::MovingDownTo1stFloor"
-        [label="startCleanupSecondFloor/\lmoveDown;\l"];
+        [label="startCleanupFirstFloor/\lmoveDown;\l"];
 
     "MainMap::MovingDownTo2ndFloor" -> "MainMap::WaitingForRobotExit2ndFloorRobotDocked"
         [label="carrierButtonPressed2ndFloor/\lstop;\l"];
