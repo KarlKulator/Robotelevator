@@ -5,7 +5,8 @@
 %%
 Parked
 {
-    startCleanup MovingDownTo2ndFloor { moveDown(); }
+    startCleanupFirstFloor MovingDownTo2ndFloor { moveDown(); }
+    startCleanupSecondFloor MovingDownTo1stFloor { moveDown(); }
     Default nil { }
 }
 
@@ -32,7 +33,7 @@ Cleaning2ndFloor
 }
 WaitingForRobotEnter2ndFloorRobotDocked
 {
-	dockingTimePassed(dockingtimerId: int) [ctxt.getCurrentDockingTimerId() == dockingtimerId] MovingDownTo1stFloor { moveDown(); }
+	dockingTimePassed(dockingtimerId: int) [ctxt.getCurrentDockingTimerId() == dockingtimerId] MovingUpToParkingPosition { moveUp(); }
     robotButtonReleased2ndFloor Cleaning2ndFloor {cancelDockingTimer();}
     Default nil { }
 }

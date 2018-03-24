@@ -99,9 +99,14 @@ void RobotelevatorStatemachine::robotButtonReleased2ndFloor() {
 	m_statemachineContext.robotButtonReleased2ndFloor();
 }
 
-void RobotelevatorStatemachine::startCleanup() {
+void RobotelevatorStatemachine::startCleanupFirstFloor() {
 	std::lock_guard<std::mutex> lockGuard(m_incomingEventSequentialisingMutex);
-	m_statemachineContext.startCleanup();
+	m_statemachineContext.startCleanupFirstFloor()();
+}
+
+void RobotelevatorStatemachine::startCleanupSecondFloor() {
+	std::lock_guard<std::mutex> lockGuard(m_incomingEventSequentialisingMutex);
+	m_statemachineContext.startCleanupSecondFloor()();
 }
 
 void RobotelevatorStatemachine::undockingTimePassed(int timerId) {

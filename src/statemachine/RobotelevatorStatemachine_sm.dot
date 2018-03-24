@@ -57,7 +57,10 @@ digraph RobotelevatorStatemachine {
     //
 
     "MainMap::Parked" -> "MainMap::MovingDownTo2ndFloor"
-        [label="startCleanup/\lmoveDown;\l"];
+        [label="startCleanupFirstFloor/\lmoveDown;\l"];
+
+    "MainMap::Parked" -> "MainMap::MovingDownTo1stFloor"
+        [label="startCleanupSecondFloor/\lmoveDown;\l"];
 
     "MainMap::MovingDownTo2ndFloor" -> "MainMap::WaitingForRobotExit2ndFloorRobotDocked"
         [label="carrierButtonPressed2ndFloor/\lstop;\l"];
@@ -74,8 +77,8 @@ digraph RobotelevatorStatemachine {
     "MainMap::Cleaning2ndFloor" -> "MainMap::WaitingForRobotEnter2ndFloorRobotDocked"
         [label="robotButtonPressed2ndFloor/\lstartDockingTimer;\l"];
 
-    "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::MovingDownTo1stFloor"
-        [label="dockingTimePassed\l\[ctxt.getCurrentDockingTimerId() == dockingtimerId\]/\lmoveDown;\l"];
+    "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::MovingUpToParkingPosition"
+        [label="dockingTimePassed\l\[ctxt.getCurrentDockingTimerId() == dockingtimerId\]/\lmoveUp;\l"];
 
     "MainMap::WaitingForRobotEnter2ndFloorRobotDocked" -> "MainMap::Cleaning2ndFloor"
         [label="robotButtonReleased2ndFloor/\lcancelDockingTimer;\l"];
@@ -102,7 +105,7 @@ digraph RobotelevatorStatemachine {
         [label="robotButtonReleased1stFloor/\lcancelDockingTimer;\l"];
 
     "MainMap::MovingUpToParkingPosition" -> "MainMap::Parked"
-        [label="carrierButtonPressedParkingPosition/\lstop;\l"];
+        [label="carrierButtonPressedParkingPosition/\lstop;\lexit;\l"];
 
     "%start" -> "MainMap::Parked"
 

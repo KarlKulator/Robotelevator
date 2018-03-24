@@ -52,7 +52,8 @@ public:
     virtual void robotButtonPressed2ndFloor(RobotelevatorStatemachineContext& context);
     virtual void robotButtonReleased1stFloor(RobotelevatorStatemachineContext& context);
     virtual void robotButtonReleased2ndFloor(RobotelevatorStatemachineContext& context);
-    virtual void startCleanup(RobotelevatorStatemachineContext& context);
+    virtual void startCleanupFirstFloor(RobotelevatorStatemachineContext& context);
+    virtual void startCleanupSecondFloor(RobotelevatorStatemachineContext& context);
     virtual void undockingTimePassed(RobotelevatorStatemachineContext& context, int undockingtimerId);
 
 protected:
@@ -98,7 +99,8 @@ public:
     {};
 
     virtual void Default(RobotelevatorStatemachineContext& context);
-    virtual void startCleanup(RobotelevatorStatemachineContext& context);
+    virtual void startCleanupFirstFloor(RobotelevatorStatemachineContext& context);
+    virtual void startCleanupSecondFloor(RobotelevatorStatemachineContext& context);
 };
 
 class MainMap_MovingDownTo2ndFloor :
@@ -329,10 +331,17 @@ public:
         setTransition(NULL);
     };
 
-    inline void startCleanup()
+    inline void startCleanupFirstFloor()
     {
-        setTransition("startCleanup");
-        getState().startCleanup(*this);
+        setTransition("startCleanupFirstFloor");
+        getState().startCleanupFirstFloor(*this);
+        setTransition(NULL);
+    };
+
+    inline void startCleanupSecondFloor()
+    {
+        setTransition("startCleanupSecondFloor");
+        getState().startCleanupSecondFloor(*this);
         setTransition(NULL);
     };
 
