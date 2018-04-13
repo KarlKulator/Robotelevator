@@ -9,10 +9,10 @@
 #include <wiringPi.h>
 
 static const int moveDownFirstRotationPulseWidth_uS = 120;
-static const int moveDownSecondRotationPulseWidth_uS = 140;
+static const int moveDownSecondRotationPulseWidth_uS = 130;
 
-static const int moveUpFirstRotationPulseWidth_uS = 180;
-static const int moveUpSecondRotationPulseWidth_uS = 170;
+static const int moveUpFirstRotationPulseWidth_uS = 183;
+static const int moveUpSecondRotationPulseWidth_uS = 180;
 
 static const int stopRotationPulseWidth_uS = 155;
 

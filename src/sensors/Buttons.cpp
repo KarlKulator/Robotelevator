@@ -13,8 +13,8 @@
 
 Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 		m_robotElevatorStatemachine(robotElevatorStatemachine), m_carrierButton2ndFloor(
-				22), m_carrierButton1stFloor(23), m_carrierButtonParkingPosition(
-				24), m_robotButton2ndFloor(25), m_robotButton1stFloor(6) {
+				22, 1), m_carrierButton1stFloor(23, 1), m_carrierButtonParkingPosition(
+				24, 1), m_robotButton2ndFloor(25, 5), m_robotButton1stFloor(6, 5) {
 	auto buttonsStateChangePollingThread =
 			std::thread(
 					[=]() {
@@ -54,10 +54,10 @@ Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 
 							switch(m_robotButton2ndFloor.updateAndReadButtonStateChange()) {
 								case ButtonStateChange::eWasReleased:
-								robotButtonPressed2ndFloor();
+								robotButtonReleased2ndFloor();
 								break;
 								case ButtonStateChange::eWasPressed:
-								robotButtonReleased2ndFloor();
+								robotButtonPressed2ndFloor();
 								break;
 								default:
 								break;
@@ -73,7 +73,7 @@ Buttons::Buttons(RobotelevatorStatemachine* robotElevatorStatemachine) :
 								default:
 								break;
 							}
-							delay(50);
+							delay(15);
 						}
 					});
 

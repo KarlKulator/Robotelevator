@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
 	wiringPiSetupGpio();
 
 	ServoswitchedElevatorMotor motor;
-	Timer dockUndockTimer(20000);
+	Timer dockUndockTimer(120000);
 	RobotelevatorStatemachine statemachine(&motor, &dockUndockTimer);
 	Buttons buttons(&statemachine);
 

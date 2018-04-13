@@ -14,7 +14,7 @@ enum class ButtonStateChange{
 
 class Button {
 public:
-	Button(unsigned int broadcomPinId);
+	Button(unsigned int broadcomPinId, unsigned int neededChangeCount);
 	virtual ~Button() {};
 
 	ButtonStateChange updateAndReadButtonStateChange();
@@ -22,6 +22,8 @@ public:
 private:
 	unsigned int m_broadcomPinId;
 	bool m_isPressed = 0;
+    unsigned int m_changeCount = 0;
+    unsigned int m_neededChangeCount;
 };
 
 #endif /* SRC_BUTTON_H_ */
